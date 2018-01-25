@@ -2,6 +2,7 @@ package com.masudbappy.employeemanagement.entities;
 
 import com.masudbappy.employeemanagement.core.BaseEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -12,7 +13,7 @@ public class Department extends BaseEntity{
 
     private String deparmentName;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Employee> employeeList;
 
     public Department() {

@@ -2,6 +2,7 @@ package com.masudbappy.employeemanagement.entities;
 
 import com.masudbappy.employeemanagement.core.BaseEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -15,10 +16,10 @@ public class Employee extends BaseEntity{
     @ManyToOne
     private Department department;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Education> educationList;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Designation> designationList;
 
     public Employee() {
