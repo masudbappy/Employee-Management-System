@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,9 @@ public class Employee extends BaseEntity{
 
     public Employee() {
         super();
+        educationList = new ArrayList<>();
+        department = new Department();
+        designationList = new ArrayList<>();
     }
 
     public Employee(Department department, List<Education> educationList, List<Designation> designationList) {
@@ -31,6 +35,10 @@ public class Employee extends BaseEntity{
         this.department = department;
         this.educationList = educationList;
         this.designationList = designationList;
+    }
+
+    public Employee(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -53,12 +61,22 @@ public class Employee extends BaseEntity{
         return educationList;
     }
 
+    public void addEducation(Education education){
+        education.setEmployee(this);
+        educationList.add(education);
+    }
+
     public void setEducationList(List<Education> educationList) {
         this.educationList = educationList;
     }
 
     public List<Designation> getDesignationList() {
         return designationList;
+    }
+
+    public void addDesignation(Designation designation){
+        designation.setEmployee(this);
+        designationList.add(designation);
     }
 
     public void setDesignationList(List<Designation> designationList) {

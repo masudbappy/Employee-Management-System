@@ -51,4 +51,12 @@ public class Education extends BaseEntity{
     public void setSchool(String school) {
         this.school = school;
     }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 }

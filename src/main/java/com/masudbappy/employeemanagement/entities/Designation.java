@@ -39,4 +39,5 @@ public class Designation extends BaseEntity{
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
 }
