@@ -17,16 +17,15 @@ public class Employee extends BaseEntity{
     @ManyToOne
     private Department department;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Education> educationList;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Designation> designationList;
 
     public Employee() {
         super();
         educationList = new ArrayList<>();
-        department = new Department();
         designationList = new ArrayList<>();
     }
 
