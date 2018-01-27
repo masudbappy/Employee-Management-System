@@ -5,7 +5,6 @@ import com.masudbappy.employeemanagement.core.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Designation extends BaseEntity{

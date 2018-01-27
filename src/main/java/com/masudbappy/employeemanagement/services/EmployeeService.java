@@ -3,8 +3,6 @@ package com.masudbappy.employeemanagement.services;
 import com.masudbappy.employeemanagement.entities.Department;
 import com.masudbappy.employeemanagement.entities.Employee;
 import com.masudbappy.employeemanagement.repositories.DepartmentRepository;
-import com.masudbappy.employeemanagement.repositories.DesignationRepository;
-import com.masudbappy.employeemanagement.repositories.EducationRepository;
 import com.masudbappy.employeemanagement.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,15 +15,11 @@ public class EmployeeService {
 
     private EmployeeRepository employeeRepository;
     private DepartmentRepository departmentRepository;
-    private EducationRepository educationRepository;
-    private DesignationRepository designationRepository;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository, EducationRepository educationRepository, DesignationRepository designationRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository) {
         this.employeeRepository = employeeRepository;
         this.departmentRepository = departmentRepository;
-        this.educationRepository = educationRepository;
-        this.designationRepository = designationRepository;
     }
 
     public Employee save(Employee employee) {
