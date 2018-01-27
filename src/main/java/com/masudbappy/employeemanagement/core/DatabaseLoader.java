@@ -34,6 +34,6 @@ public class DatabaseLoader implements ApplicationRunner{
 //        employee.setDepartment(department);
 //        employee.addEducation(new Education("UAP","MMC","CSPHS"));
 //        employee.addDesignation(new Designation("Software Engineer"));
-//        employeeRepository.save(employee);
+//        employeeRepository.save(employee)
     }
 }

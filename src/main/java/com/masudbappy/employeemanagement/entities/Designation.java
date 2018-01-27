@@ -1,5 +1,6 @@
 package com.masudbappy.employeemanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.masudbappy.employeemanagement.core.BaseEntity;
 
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ public class Designation extends BaseEntity{
     private String designationName;
 
     @ManyToOne
+    @JsonBackReference
     private Employee employee;
 
     public Designation() {

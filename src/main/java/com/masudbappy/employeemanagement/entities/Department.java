@@ -1,5 +1,6 @@
 package com.masudbappy.employeemanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.masudbappy.employeemanagement.core.BaseEntity;
 
 import javax.persistence.CascadeType;
@@ -11,9 +12,10 @@ import java.util.List;
 public class Department extends BaseEntity{
 
 
-    private String deparmentName;
+    private String departmentName;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Employee> employeeList;
 
     public Department() {
@@ -23,15 +25,15 @@ public class Department extends BaseEntity{
 
     public Department(String deparmentName) {
         this();
-        this.deparmentName = deparmentName;
+        this.departmentName = deparmentName;
     }
 
     public String getDeparmentName() {
-        return deparmentName;
+        return departmentName;
     }
 
     public void setDeparmentName(String deparmentName) {
-        this.deparmentName = deparmentName;
+        this.departmentName = deparmentName;
     }
 
     public List<Employee> getEmployeeList() {

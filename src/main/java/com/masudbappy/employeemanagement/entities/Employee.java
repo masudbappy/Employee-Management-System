@@ -1,5 +1,6 @@
 package com.masudbappy.employeemanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.masudbappy.employeemanagement.core.BaseEntity;
 
 import javax.persistence.CascadeType;
@@ -12,15 +13,19 @@ import java.util.List;
 @Entity
 public class Employee extends BaseEntity{
 
+    @JsonProperty("name")
     private String name;
 
     @ManyToOne
+    @JsonProperty("department")
     private Department department;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonProperty("educationList")
     private List<Education> educationList;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonProperty("designationList")
     private List<Designation> designationList;
 
     public Employee() {

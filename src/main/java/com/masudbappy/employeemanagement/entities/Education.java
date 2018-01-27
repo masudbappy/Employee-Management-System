@@ -1,5 +1,6 @@
 package com.masudbappy.employeemanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.masudbappy.employeemanagement.core.BaseEntity;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ public class Education extends BaseEntity{
     private String school;
 
     @ManyToOne
+    @JsonBackReference
     private Employee employee;
 
     public Education() {

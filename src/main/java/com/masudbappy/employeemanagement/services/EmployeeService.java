@@ -30,9 +30,13 @@ public class EmployeeService {
         this.designationRepository = designationRepository;
     }
 
-    public Employee saveEmployee(String name){
-
-            return employeeRepository.save(new Employee(name));
+    public Employee createEmployee(Employee employee){
+        if (employee==null) throw new IllegalArgumentException("Employee can't be null");
+        if (employee.getDepartment()!=null && employee.getDepartment().getId()==null){
+            Department department = this.departmentRepository.save(employee.getDepartment());
+            employee.setDepartment(department);
+        }
+        return this.employeeRepository.save(employee);
     }
 
     public List<Employee> findAll(){
