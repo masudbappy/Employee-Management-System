@@ -39,4 +39,19 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updateEmployee(@PathVariable("id") Long id,
+                                         @RequestBody Employee employee) {
+        if (employee==null) return ResponseEntity.badRequest().build();
+        employee.setId(id);
+        employee = this.employeeService.save(employee);
+        return ResponseEntity.ok(employee);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteEmployee(@PathVariable("id") Long id){
+        this.employeeService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
 }

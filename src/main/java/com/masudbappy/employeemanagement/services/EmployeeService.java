@@ -46,5 +46,9 @@ public class EmployeeService {
         return employeeRepository.findAll(new PageRequest(page, 10, Sort.Direction.DESC, "id"));
     }
 
+    public void delete(Long id){
+        if (id==null) throw new IllegalArgumentException("ID can't be null");
+        this.employeeRepository.delete(id);
+    }
 
 }
