@@ -1,54 +1,41 @@
 package com.masudbappy.employeemanagement.controllers;
 
-import com.masudbappy.employeemanagement.entities.Department;
-import com.masudbappy.employeemanagement.entities.Designation;
-import com.masudbappy.employeemanagement.entities.Education;
 import com.masudbappy.employeemanagement.entities.Employee;
-import com.masudbappy.employeemanagement.repositories.DepartmentRepository;
-import com.masudbappy.employeemanagement.repositories.EmployeeRepository;
 import com.masudbappy.employeemanagement.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @RestController
 @RequestMapping(value = "/employees")
 public class EmployeeController {
 
 
-    @Autowired
-    private EmployeeService employeeService;
-
-
-    private EmployeeRepository employeeRepository;
-    private DepartmentRepository departmentRepository;
+    private final EmployeeService employeeService;
 
     @Autowired
-    public EmployeeController(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository) {
-        this.employeeRepository = employeeRepository;
-        this.departmentRepository = departmentRepository;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<Employee> getAll() {
-        return (List<Employee>) employeeRepository.findAll();
+
+    @GetMapping("")
+    public ResponseEntity getAll(@RequestParam(value = "page", defaultValue = "0") Integer page) {
+        return ResponseEntity.ok(this.employeeService.findAll(page));
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public Employee getById(@RequestParam("id") Long id) {
-        Employee e = employeeRepository.findOne(id);
-        return e;
+    @GetMapping("/{id}")
+    public ResponseEntity getById(@PathVariable("id") Long id) {
+        Employee employee = this.employeeService.findOne(id);
+        if (employee == null) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(employee);
     }
 
 
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createEmployee(@RequestBody Employee employee) {
-        employee = this.employeeService.createEmployee(employee);
+        employee = this.employeeService.save(employee);
         return ResponseEntity.ok(employee);
     }
 
